@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: #fffdf8;
+    color: #161412;
+    font-family: theme('fontFamily.sans');
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: #e7d2a8;
+    color: #161412;
+  }
+}
+
+@layer components {
+  .btn-primary,
+  .btn-ghost {
+    @apply inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full px-6 text-sm font-medium uppercase tracking-[0.18em] transition duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-pearl text-ink shadow-glow hover:bg-champagne;
+  }
+
+  .btn-ghost {
+    @apply border border-white/40 bg-white/10 text-pearl backdrop-blur hover:border-champagne hover:bg-white/[0.18];
+  }
+
+  .eyebrow {
+    @apply mb-4 text-xs font-medium uppercase tracking-[0.3em] text-taupe;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl font-medium leading-tight tracking-normal text-ink sm:text-5xl lg:text-6xl;
+  }
+
+  .carousel-button,
+  .social-button {
+    @apply grid h-12 w-12 place-items-center rounded-full border border-ink/10 bg-white/[0.64] text-ink transition hover:-translate-y-0.5 hover:border-champagne hover:bg-champagne;
+  }
+
+  .ambient {
+    @apply pointer-events-none absolute h-80 w-80 rounded-full blur-3xl;
+  }
+
+  .ambient-left {
+    @apply -left-32 top-24 bg-rose/[0.22];
+  }
+
+  .ambient-right {
+    @apply -right-32 bottom-10 bg-sage/[0.18];
+  }
+}
+
+.soulor-swiper .swiper-pagination-bullet {
+  background: rgba(22, 20, 18, 0.28);
+  opacity: 1;
+}
+
+.soulor-swiper .swiper-pagination-bullet-active {
+  background: #161412;
+}

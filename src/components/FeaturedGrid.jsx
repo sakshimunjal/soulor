@@ -26,7 +26,7 @@ const FeaturedGrid = ({ products }) => (
                 <p className="text-xs uppercase tracking-[0.24em] text-champagne">{product.mood}</p>
                 <h3 className="mt-2 font-serif text-3xl">{product.name}</h3>
                 <div className="mt-5 flex items-center justify-between opacity-0 transition duration-500 group-hover:opacity-100">
-                  <span className="text-sm text-white/80">{product.price}</span>
+                  <span className="text-sm uppercase tracking-[0.18em] text-white/80">Anti-tarnish</span>
                   <a href="#collections" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-ink">
                     View Collection <ArrowUpRight size={15} />
                   </a>

@@ -124,8 +124,8 @@ const App = () => {
                 <p className="eyebrow">Social gallery</p>
                 <h2 className="section-title max-w-3xl">Styled in soft light for the Soulor moodboard.</h2>
               </div>
-              <a className="text-sm uppercase tracking-[0.22em] text-ink/[0.62] hover:text-ink" href="https://www.instagram.com/">
-                Instagram
+              <a className="text-sm uppercase tracking-[0.22em] text-ink/[0.62] hover:text-ink" href="https://www.instagram.com/soulor.shop/">
+                @soulor.shop
               </a>
             </Reveal>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">

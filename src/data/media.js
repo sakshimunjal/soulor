@@ -4,8 +4,11 @@ const mediaModules = import.meta.glob('../../media/**/*.{png,PNG,jpg,JPG,jpeg,JP
   import: 'default',
 });
 
-const imageTypes = ['png', 'jpg', 'jpeg', 'webp'];
-const videoTypes = ['mp4'];
+const imageTypes = ['png', 'jpg', 'jpeg', 'webp', 'avif'];
+const videoTypes = ['mp4', 'webm', 'mov'];
+const moods = ['Soft Gold', 'Everyday Shine', 'Evening Poise', 'Pearl Noir', 'Gift Ready', 'Daily Luxury'];
+
+const byName = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
 
 const titleCase = (value) =>
   value
@@ -30,7 +33,7 @@ const mediaEntries = Object.entries(mediaModules).map(([path, url]) => {
     file,
     type: videoTypes.includes(extension) ? 'video' : 'image',
   };
-});
+}).sort((a, b) => byName(a.folder, b.folder) || byName(a.file, b.file));
 
 const rootMedia = mediaEntries.filter((item) => item.folder === 'root');
 const grouped = mediaEntries.reduce((acc, item) => {
@@ -40,20 +43,23 @@ const grouped = mediaEntries.reduce((acc, item) => {
   return acc;
 }, {});
 
-const products = Object.entries(grouped).map(([folder, assets], index) => {
-  const images = assets.filter((asset) => asset.type === 'image');
-  const videos = assets.filter((asset) => asset.type === 'video');
+const products = Object.entries(grouped)
+  .sort(([folderA], [folderB]) => byName(folderA, folderB))
+  .map(([folder, assets], index) => {
+    const images = assets.filter((asset) => imageTypes.includes(asset.file.split('.').pop().toLowerCase()));
+    const videos = assets.filter((asset) => videoTypes.includes(asset.file.split('.').pop().toLowerCase()));
+    const cover = images.find((image) => /^1[_\s-]/i.test(image.file)) || images[0];
 
-  return {
-    id: folder.toLowerCase().replace(/\s+/g, '-'),
-    name: titleCase(folder.replace(/\bwatch\b/i, 'Watch')),
-    image: images[0]?.url,
-    gallery: images.map((image) => image.url),
-    video: videos[0]?.url,
-    price: ['₹899', '₹1,099', '₹749', '₹999', '₹1,299'][index % 5],
-    mood: ['Soft Gold', 'Everyday Shine', 'Evening Poise', 'Pearl Noir', 'Gift Ready'][index % 5],
-  };
-});
+    return {
+      id: folder.toLowerCase().replace(/\s+/g, '-'),
+      name: titleCase(folder.replace(/\bwatch\b/i, 'Watch')),
+      image: cover?.url,
+      gallery: images.map((image) => image.url),
+      video: videos[0]?.url,
+      assetCount: assets.length,
+      mood: moods[index % moods.length],
+    };
+  });
 
 const findRoot = (match) => rootMedia.find((item) => item.file.toLowerCase().includes(match))?.url;
 
@@ -72,7 +78,6 @@ export const productCatalog = products.length
         image: undefined,
         gallery: [],
         video: undefined,
-        price: '₹899',
         mood: 'Anti-Tarnish',
       },
     ];

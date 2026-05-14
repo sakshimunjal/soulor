@@ -1,4 +1,4 @@
-import { Instagram, Mail, Send } from 'lucide-react';
+import { Instagram, Mail, Send, Youtube } from 'lucide-react';
 
 const Footer = ({ logo }) => (
   <footer id="contact" className="bg-ink px-5 py-14 text-pearl sm:px-8">
@@ -8,7 +8,9 @@ const Footer = ({ logo }) => (
           {logo ? <img src={logo} alt="Soulor" className="h-12 w-12 rounded-full object-cover" /> : null}
           <span className="font-serif text-3xl">Soulor</span>
         </div>
-        <p className="mt-4 max-w-xs text-sm leading-7 text-pearl/[0.62]">Anti-tarnish artificial jewelry with a refined daily glow.</p>
+        <p className="mt-4 max-w-xs text-sm leading-7 text-pearl/[0.62]">
+          Anti-tarnish artificial jewelry with a refined daily glow.
+        </p>
       </div>
 
       <form className="rounded-[1.5rem] border border-white/[0.12] bg-white/[0.04] p-4">
@@ -33,11 +35,17 @@ const Footer = ({ logo }) => (
           <a href="https://soulor.in" className="social-button" aria-label="Soulor website">
             <Mail size={18} />
           </a>
-          <a href="https://www.instagram.com/" className="social-button" aria-label="Soulor Instagram">
+          <a href="https://www.instagram.com/soulor.shop/" className="social-button" aria-label="Soulor Instagram soulor.shop">
             <Instagram size={18} />
           </a>
+          <a href="https://www.youtube.com/@soulor-shop" className="social-button" aria-label="Soulor YouTube soulor-shop">
+            <Youtube size={19} />
+          </a>
         </div>
-        <p className="text-sm text-pearl/50">© {new Date().getFullYear()} Soulor. All rights reserved.</p>
+        <div className="text-sm text-pearl/50 lg:text-right">
+          <p>@soulor.shop · youtube.com/@soulor-shop</p>
+          <p className="mt-2">© {new Date().getFullYear()} Soulor. All rights reserved.</p>
+        </div>
       </div>
     </div>
   </footer>

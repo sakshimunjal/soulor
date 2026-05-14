@@ -57,12 +57,11 @@ const ProductCarousel = ({ products }) => (
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between px-2 py-5">
+                <div className="px-2 py-5">
                   <div>
                     <h3 className="font-serif text-2xl text-ink">{product.name}</h3>
                     <p className="mt-1 text-sm uppercase tracking-[0.18em] text-taupe">Anti-tarnish finish</p>
                   </div>
-                  <p className="text-sm font-medium text-ink">{product.price}</p>
                 </div>
               </article>
             </SwiperSlide>
